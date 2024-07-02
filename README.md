@@ -1,35 +1,9 @@
-# cdl-workout
+I got given a program recently from my Personal Trainer, a 2 week rotating exercise plan, and a nutrition plan.
 
-This template should help get you started developing with Vue 3 in Vite.
+Instead of tracking it in a boring excel file, I figured hey! I'm a developer... this is a great chance to make a project!
 
-## Recommended IDE Setup
+The end goal of this project will give you the flexibility to add/remove/edit workout days, exercises, sets and reps.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Likewise with nutrition, you'll be able to add/remove/edit foods.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+The idea is to take data from inputs, and populate them into customizable lists.
