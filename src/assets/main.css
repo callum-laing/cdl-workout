@@ -23,6 +23,7 @@ html {
 /* min body height */
 body {
   min-height: 100svh;
+  background-image: linear-gradient(to top right, rgba(40, 20, 20), rgba(60, 20, 20), rgba(120, 70, 70));
 }
 
 /* responsive images/videos */
