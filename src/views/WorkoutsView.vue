@@ -1,103 +1,131 @@
 <template>
-  <div class="wrapper">
-    <h1>Workouts</h1>
-    <button class="dayBtn" @click="addDay">Add Day</button>
-    <div v-for="(day, index) in days" :key="index" class="day">
-      <input
-        v-model="day.name"
-        @change="saveDayName(index)"
-        placeholder="Enter day name"
-        v-if="!day.nameSet"
-      />
-      <button v-if="!day.nameSet" @click="removeDay(index)" class="cancelDayBtn">❌</button>
-      <div class="dayWrapper">
-        <span v-if="day.nameSet">{{ day.name }}</span>
-        <button v-if="day.nameSet" class="addExBtn" @click="toggleExerciseInputs(index)">
-          {{ day.showExerciseInputs ? 'Cancel' : 'Add Exercise' }}
-        </button>
-        <div v-if="day.showExerciseInputs">
-          <div>
-            <label for="nameBox">Exercise Name: </label>
-            <input class="nameBox inputBox" v-model="day.exercise.name" />
-            <br />
-            <label for="setBox">Sets: </label>
-            <input class="setBox inputBox" type="number" v-model.number="day.exercise.sets" />
-            <br />
-            <label for="repBox">Reps: </label>
-            <div v-for="(rep, repIndex) in day.exercise.reps" :key="repIndex">
-              <input
-                class="repBox inputBox"
-                type="number"
-                v-model.number="day.exercise.reps[repIndex]"
-              />
-              <button @click="removeRep(index, repIndex)">Remove</button>
+  <div class="container">
+    <div class="header">
+      <h1>Workouts</h1>
+      <button class="dayBtn" @click="addDay">Add Day</button>
+    </div>
+    <div class="wrapper">
+      <div class="leftColumn">
+        <div v-for="(day, index) in days" :key="index" class="day">
+          <input
+            v-model="day.name"
+            @change="saveDayName(index)"
+            placeholder="Enter day name"
+            v-if="!day.nameSet"
+          />
+          <button v-if="!day.nameSet" @click="removeDay(index)" class="cancelDayBtn">❌</button>
+          <div class="dayWrapper">
+            <span v-if="day.nameSet">{{ day.name }}</span>
+            <button v-if="day.nameSet" class="addExBtn" @click="toggleExerciseInputs(index)">
+              {{ day.showExerciseInputs ? 'Cancel' : 'Add Exercise' }}
+            </button>
+            <div v-if="day.showExerciseInputs">
+              <div>
+                <label for="nameBox">Exercise Name: </label>
+                <input class="nameBox inputBox" v-model="day.exercise.name" />
+                <br />
+                <label for="setBox">Sets: </label>
+                <input class="setBox inputBox" type="number" v-model.number="day.exercise.sets" />
+                <br />
+                <label for="repBox">Reps: </label>
+                <div v-for="(rep, repIndex) in day.exercise.reps" :key="repIndex">
+                  <input
+                    class="repBox inputBox"
+                    type="number"
+                    v-model.number="day.exercise.reps[repIndex]"
+                  />
+                  <button @click="removeRep(index, repIndex)">Remove</button>
+                </div>
+                <button @click="addRep(index)">Add More Reps</button>
+                <br />
+                <button class="exBtn" @click="saveExercise(index)">Complete Setup ✓</button>
+              </div>
             </div>
-            <button @click="addRep(index)">Add More Reps</button>
-            <br />
-            <button class="exBtn" @click="saveExercise(index)">Complete Setup ✓</button>
           </div>
         </div>
-        <ul>
-          <p class="exListTitle">Exercises:</p>
-          <li v-for="(exercise, exIndex) in day.exercises" :key="exIndex">
-            {{ exercise.name }}: {{ exercise.sets }} x {{ exercise.reps.join(', ') }}
-          </li>
-        </ul>
+      </div>
+      <div class="rightColumn">
+        <div v-for="day in days" :key="day.name" class="summary">
+          <h2 class="exListDay">{{ day.name }}</h2>
+          <ul>
+            <li v-for="exercise in day.exercises" :key="exercise.name">
+              {{ exercise.name }}: {{ exercise.sets }}x{{ exercise.reps.join(', ') }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
-  data() {
-    return {
-      days: []
-    }
-  },
-  methods: {
-    addDay() {
-      this.days.push({
+  setup() {
+    const days = ref([])
+
+    const addDay = () => {
+      days.value.push({
         name: '',
         nameSet: false,
         exercise: { name: '', sets: null, reps: [null] },
         exercises: [],
         showExerciseInputs: false
       })
-    },
-    capitalizeFirstLetter(string) {
+    }
+
+    const capitalizeFirstLetter = (string) => {
       return string.charAt(0).toUpperCase() + string.slice(1)
-    },
-    saveDayName(index) {
-      if (this.days[index].name.trim()) {
-        this.days[index].name = this.capitalizeFirstLetter(this.days[index].name.trim()) + ' Day'
-        this.days[index].nameSet = true
+    }
+
+    const saveDayName = (index) => {
+      if (days.value[index].name.trim()) {
+        days.value[index].name = capitalizeFirstLetter(days.value[index].name.trim()) + ' Day'
+        days.value[index].nameSet = true
       }
-    },
-    toggleExerciseInputs(index) {
-      this.days[index].showExerciseInputs = !this.days[index].showExerciseInputs
-    },
-    addRep(dayIndex) {
-      this.days[dayIndex].exercise.reps.push(null)
-    },
-    removeRep(dayIndex, repIndex) {
-      this.days[dayIndex].exercise.reps.splice(repIndex, 1)
-    },
-    removeDay(index) {
-      this.days.splice(index, 1)
-    },
-    saveExercise(index) {
-      const exercise = this.days[index].exercise
+    }
+
+    const toggleExerciseInputs = (index) => {
+      days.value[index].showExerciseInputs = !days.value[index].showExerciseInputs
+    }
+
+    const addRep = (dayIndex) => {
+      days.value[dayIndex].exercise.reps.push(null)
+    }
+
+    const removeRep = (dayIndex, repIndex) => {
+      days.value[dayIndex].exercise.reps.splice(repIndex, 1)
+    }
+
+    const removeDay = (index) => {
+      days.value.splice(index, 1)
+    }
+
+    const saveExercise = (index) => {
+      const exercise = days.value[index].exercise
       if (exercise.name.trim() && exercise.sets > 0 && exercise.reps.every((rep) => rep > 0)) {
-        exercise.name = this.capitalizeFirstLetter(exercise.name.trim())
-        this.days[index].exercises.push({
+        exercise.name = capitalizeFirstLetter(exercise.name.trim())
+        days.value[index].exercises.push({
           name: exercise.name,
           sets: exercise.sets,
           reps: exercise.reps.slice() // Copy array to avoid reference issues
         })
-        this.days[index].exercise = { name: '', sets: null, reps: [null] }
-        this.days[index].showExerciseInputs = false
+        days.value[index].exercise = { name: '', sets: null, reps: [null] }
+        days.value[index].showExerciseInputs = false
       }
+    }
+
+    return {
+      days,
+      addDay,
+      capitalizeFirstLetter,
+      saveDayName,
+      toggleExerciseInputs,
+      addRep,
+      removeRep,
+      removeDay,
+      saveExercise
     }
   }
 }
@@ -109,19 +137,27 @@ h1 {
   margin-top: 20px;
 }
 
-.exListTitle {
-  font-family: 'Caveat', cursive;
-}
-
 .day {
   margin: 20px 0;
 }
 
+.exListDay {
+  font-size: 2rem;
+  text-decoration: underline;
+  margin-bottom: 5px;
+  font-family: 'Caveat', cursive;
+}
+
 .wrapper {
   display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  gap: 10px;
+  flex-direction: row;
+  gap: 20px;
+  margin: 20px;
+}
+
+.leftColumn,
+.rightColumn {
+  flex: 1;
 }
 
 .dayWrapper {
@@ -132,6 +168,12 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   width: 500px;
+}
+
+.summary {
+  background-color: rgba(50, 50, 50, 0.1);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 input {
