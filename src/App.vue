@@ -11,7 +11,6 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/workouts">Workouts</RouterLink>
     </nav>
   </header>
-
   <RouterView />
 </template>
 
@@ -30,5 +29,6 @@ nav {
 h1 {
   text-align: center;
   font-size: 5rem;
+  padding-top: 25px;
 }
 </style>
