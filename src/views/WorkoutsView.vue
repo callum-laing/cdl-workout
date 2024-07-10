@@ -131,7 +131,7 @@ h1 {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 10px;
   border-radius: 5px;
-  width: 900px;
+  width: 500px;
 }
 
 input {
