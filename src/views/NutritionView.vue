@@ -1,15 +1,14 @@
 <template>
   <div class="diet">
-    <h1>This is my nutrition page</h1>
+    <h1 class="nutritionTitle">Under construction</h1>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+.nutritionTitle {
+  text-align: center;
+  font-size: 10rem;
+  padding-top: 200px;
+  font-style: italic;
 }
 </style>

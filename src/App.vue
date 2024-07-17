@@ -7,8 +7,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <h1>CDL Workout</h1>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/nutrition">Nutrition</RouterLink>
       <RouterLink to="/workouts">Workouts</RouterLink>
+      <RouterLink to="/nutrition">Nutrition</RouterLink>
     </nav>
   </header>
   <RouterView />

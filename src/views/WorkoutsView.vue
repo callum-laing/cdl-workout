@@ -1,69 +1,26 @@
-<template>
-  <div class="container">
-    <div class="header">
-      <h1>Workouts</h1>
-      <button class="dayBtn" @click="addDay">Add Day</button>
-    </div>
-    <div class="wrapper">
-      <div class="leftColumn">
-        <div v-for="(day, index) in days" :key="index" class="day">
-          <input
-            v-model="day.name"
-            @change="saveDayName(index)"
-            placeholder="Enter day name"
-            v-if="!day.nameSet"
-          />
-          <button v-if="!day.nameSet" @click="removeDay(index)" class="cancelDayBtn">❌</button>
-          <div class="dayWrapper">
-            <span v-if="day.nameSet">{{ day.name }}</span>
-            <button v-if="day.nameSet" class="addExBtn" @click="toggleExerciseInputs(index)">
-              {{ day.showExerciseInputs ? 'Cancel' : 'Add Exercise' }}
-            </button>
-            <div v-if="day.showExerciseInputs">
-              <div>
-                <label for="nameBox">Exercise Name: </label>
-                <input class="nameBox inputBox" v-model="day.exercise.name" />
-                <br />
-                <label for="setBox">Sets: </label>
-                <input class="setBox inputBox" type="number" v-model.number="day.exercise.sets" />
-                <br />
-                <label for="repBox">Reps: </label>
-                <div v-for="(rep, repIndex) in day.exercise.reps" :key="repIndex">
-                  <input
-                    class="repBox inputBox"
-                    type="number"
-                    v-model.number="day.exercise.reps[repIndex]"
-                  />
-                  <button @click="removeRep(index, repIndex)">Remove</button>
-                </div>
-                <button @click="addRep(index)">Add More Reps</button>
-                <br />
-                <button class="exBtn" @click="saveExercise(index)">Complete Setup ✓</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rightColumn">
-        <div v-for="day in days" :key="day.name" class="summary">
-          <h2 class="exListDay">{{ day.name }}</h2>
-          <ul>
-            <li v-for="exercise in day.exercises" :key="exercise.name">
-              {{ exercise.name }}: {{ exercise.sets }}x{{ exercise.reps.join(', ') }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 export default {
   setup() {
     const days = ref([])
+
+    const saveDaysToLocalStorage = () => {
+      localStorage.setItem('days', JSON.stringify(days.value))
+    }
+
+    const loadDaysFromLocalStorage = () => {
+      const savedDays = localStorage.getItem('days')
+      if (savedDays) {
+        days.value = JSON.parse(savedDays)
+      }
+    }
+
+    onMounted(() => {
+      loadDaysFromLocalStorage()
+    })
+
+    watch(days, saveDaysToLocalStorage, { deep: true })
 
     const addDay = () => {
       days.value.push({
@@ -131,10 +88,73 @@ export default {
 }
 </script>
 
+<template>
+  <div class="container">
+    <div class="header">
+      <h1>Workouts</h1>
+      <button class="dayBtn" @click="addDay">Add Day</button>
+    </div>
+    <div class="wrapper">
+      <div class="leftColumn">
+        <div v-for="(day, index) in days" :key="index" class="day">
+          <input
+            v-model="day.name"
+            @change="saveDayName(index)"
+            placeholder="Enter day name"
+            v-if="!day.nameSet"
+          />
+          <button v-if="!day.nameSet" @click="removeDay(index)" class="cancelDayBtn">❌</button>
+          <div class="dayWrapper">
+            <span v-if="day.nameSet">{{ day.name }}</span>
+            <button v-if="day.nameSet" class="addExBtn" @click="toggleExerciseInputs(index)">
+              {{ day.showExerciseInputs ? 'Cancel' : 'Add Exercise' }}
+            </button>
+            <div v-if="day.showExerciseInputs">
+              <div>
+                <label for="nameBox">Exercise Name: </label>
+                <input class="nameBox inputBox" v-model="day.exercise.name" />
+                <br />
+                <label for="setBox">Sets: </label>
+                <input class="setBox inputBox" type="number" v-model.number="day.exercise.sets" />
+                <br />
+                <label for="repBox">Reps: </label>
+                <div v-for="(rep, repIndex) in day.exercise.reps" :key="repIndex">
+                  <input
+                    class="repBox inputBox"
+                    type="number"
+                    v-model.number="day.exercise.reps[repIndex]"
+                  />
+                  <button @click="removeRep(index, repIndex)">Remove</button>
+                </div>
+                <button @click="addRep(index)">Add More Reps</button>
+                <br />
+                <button class="exBtn" @click="saveExercise(index)">Complete Setup ✓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rightColumn">
+        <div v-for="day in days" :key="day.name" class="summary">
+          <h2 class="exListDay">{{ day.name }}</h2>
+          <ul>
+            <li v-for="exercise in day.exercises" :key="exercise.name">
+              {{ exercise.name }}: {{ exercise.sets }}x{{ exercise.reps.join(', ') }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style scoped>
 h1 {
   font-size: 2rem;
   margin-top: 20px;
+}
+.container {
+  padding-left: 20px;
 }
 
 .day {
