@@ -73,6 +73,10 @@ export default {
       }
     }
 
+    const removeExercise = (dayIndex, exerciseIndex) => {
+      days.value[dayIndex].exercises.splice(exerciseIndex, 1)
+    }
+
     return {
       days,
       addDay,
@@ -82,7 +86,8 @@ export default {
       addRep,
       removeRep,
       removeDay,
-      saveExercise
+      saveExercise,
+      removeExercise
     }
   }
 }
@@ -105,7 +110,11 @@ export default {
           />
           <button v-if="!day.nameSet" @click="removeDay(index)" class="cancelDayBtn">❌</button>
           <div class="dayWrapper">
-            <span v-if="day.nameSet">{{ day.name }}</span>
+            <span v-if="day.nameSet"
+              >{{ day.name }}
+
+              <button class="exRemoveBtn" v-if="day.nameSet" @click="removeDay(index)">❌</button>
+            </span>
             <button v-if="day.nameSet" class="addExBtn" @click="toggleExerciseInputs(index)">
               {{ day.showExerciseInputs ? 'Cancel' : 'Add Exercise' }}
             </button>
@@ -135,11 +144,14 @@ export default {
         </div>
       </div>
       <div class="rightColumn">
-        <div v-for="day in days" :key="day.name" class="summary">
+        <div v-for="(day, dayIndex) in days" :key="day.name" class="summary">
           <h2 class="exListDay">{{ day.name }}</h2>
           <ul>
-            <li v-for="exercise in day.exercises" :key="exercise.name">
+            <li v-for="(exercise, exerciseIndex) in day.exercises" :key="exercise.name">
               {{ exercise.name }}: {{ exercise.sets }}x{{ exercise.reps.join(', ') }}
+              <button class="exRemoveBtn" @click="removeExercise(dayIndex, exerciseIndex)">
+                ❌
+              </button>
             </li>
           </ul>
         </div>
@@ -224,6 +236,20 @@ input {
   width: 150px;
 }
 
+.removeDayBtn {
+  width: 100px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.removeDayBtn:hover,
+.exRemoveBtn:hover {
+  background-color: darkred;
+}
+
 .exBtn {
   margin-top: 15px;
   background-color: green;
@@ -236,6 +262,11 @@ input {
   background-color: white;
   color: green;
   cursor: pointer;
+}
+
+.exRemoveBtn {
+  background-color: transparent;
+  border: none;
 }
 
 button:hover {

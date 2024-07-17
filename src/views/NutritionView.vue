@@ -1,11 +1,11 @@
 <template>
   <div class="diet">
-    <h1 class="nutritionTitle">Under construction</h1>
+    <h1>Under construction</h1>
   </div>
 </template>
 
-<style>
-.nutritionTitle {
+<style scoped>
+h1 {
   text-align: center;
   font-size: 10rem;
   padding-top: 200px;
