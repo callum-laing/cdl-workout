@@ -7,3 +7,9 @@ The end goal of this project will give you the flexibility to add/remove/edit wo
 Likewise with nutrition, you'll be able to add/remove/edit foods.
 
 The idea is to take data from inputs, and populate them into customizable lists.
+
+color palette
+
+header: #023047
+borders: #219EBC
+background: #8ECAE6
