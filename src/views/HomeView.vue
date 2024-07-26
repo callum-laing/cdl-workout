@@ -320,7 +320,7 @@ button:hover {
   cursor: pointer;
 }
 
-@media (max-width: 722px) {
+@media (max-width: 768px) {
   .wrapper {
     flex-direction: column;
     align-items: center;
@@ -328,6 +328,13 @@ button:hover {
   .dayWrapper {
     margin: 0;
     padding: 1em;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>
