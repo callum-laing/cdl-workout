@@ -96,7 +96,7 @@ export default {
 <template>
   <div class="container">
     <div class="header">
-      <h1>Workouts</h1>
+      <p class="workoutTitle">Workouts</p>
       <button class="dayBtn" @click="addDay">Add Day</button>
     </div>
     <div class="wrapper">
@@ -148,7 +148,7 @@ export default {
           <h2 class="exListDay">{{ day.name }}</h2>
           <ul>
             <li v-for="(exercise, exerciseIndex) in day.exercises" :key="exercise.name">
-              {{ exercise.name }}: {{ exercise.sets }}x{{ exercise.reps.join(', ') }}
+              {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps.join(', ') }}
               <button class="exRemoveBtn" @click="removeExercise(dayIndex, exerciseIndex)">
                 ❌
               </button>
@@ -161,7 +161,7 @@ export default {
 </template>
 
 <style scoped>
-h1 {
+.workoutTitle {
   font-size: 2rem;
   margin-top: 20px;
   font-family: 'Oregano', cursive;
@@ -171,7 +171,7 @@ h1 {
 }
 
 .container {
-  padding-left: 20px;
+  padding-left: 100px;
 }
 
 .day {
@@ -208,21 +208,23 @@ h1 {
   border: 2px solid black;
   padding: 10px;
   width: 500px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px black;
 }
 
 .summary {
-  background-color: rgb(255, 194, 49, 0.2);
-  border: 2px solid black;
-  padding: 10px;
+  margin-bottom: 50px;
 }
 
 input {
   margin-right: 20px;
   margin-bottom: 20px;
-  color: white;
   padding: 5px;
   border: 2px solid rgba(50, 50, 50);
-  background-color: rgba(100, 100, 100);
+  background-color: rgba(100, 100, 100, 0.4);
+  box-shadow: 1px 1px 1px black;
+  border-radius: 5px;
+  color: black;
 }
 
 .dayBtn {
@@ -231,6 +233,11 @@ input {
   font-weight: bold;
   background-color: transparent;
   border: 2px solid black;
+  box-shadow: 1px 1px 1px black;
+}
+
+.dayBtn:hover {
+  box-shadow: none;
 }
 
 .cancelDayBtn {
@@ -251,8 +258,12 @@ input {
   font-weight: bold;
   background-color: transparent;
   border: 2px solid black;
+  box-shadow: 1px 1px 1px black;
 }
 
+.addExBtn:hover {
+  box-shadow: none;
+}
 .removeDayBtn {
   width: 100px;
   background-color: red;
@@ -264,12 +275,14 @@ input {
   padding: 5px;
   font-weight: bold;
   background-color: transparent;
-  border: 2px solid green;
+  border: 2px solid black;
+  box-shadow: 1px 1px 1px black;
 }
 
 .exBtn:hover {
   color: green;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .exRemoveBtn {
@@ -281,10 +294,12 @@ input {
   padding: 5px;
   font-weight: bold;
   background-color: transparent;
-  border: 2px solid red;
+  border: 2px solid black;
+  box-shadow: 1px 1px 1px black;
 }
 
 .repRemoveBtn:hover {
+  box-shadow: none;
   color: red;
 }
 
@@ -299,8 +314,20 @@ li {
 
 button {
   color: black;
+  border-radius: 5px;
 }
 button:hover {
   cursor: pointer;
+}
+
+@media (max-width: 722px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dayWrapper {
+    margin: 0;
+    padding: 1em;
+  }
 }
 </style>

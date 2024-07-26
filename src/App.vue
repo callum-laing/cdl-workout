@@ -27,4 +27,7 @@ h1 {
   font-weight: 400;
   font-style: normal;
 }
+
+@media (max-width: 722px) {
+}
 </style>
