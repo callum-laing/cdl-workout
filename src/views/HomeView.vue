@@ -328,6 +328,13 @@ button:hover {
   .dayWrapper {
     margin: 0;
     padding: 1em;
+    width: 100%;
+  }
+  .container {
+    padding: 0;
+  }
+  .header {
+    text-align: center;
   }
 }
 
@@ -335,6 +342,12 @@ button:hover {
   .wrapper {
     flex-direction: column;
     align-items: center;
+  }
+  .container {
+    padding: 0;
+  }
+  .header {
+    text-align: center;
   }
 }
 </style>
