@@ -13,10 +13,7 @@
 }
 
 header {
-  background-color: #606c38;
   padding-bottom: 10px;
-  border-bottom: 2px solid #dda15e;
-  color: white;
 }
 
 h1 {
