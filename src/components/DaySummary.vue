@@ -49,7 +49,7 @@ const toggleEdit = (dayIndex) => {
 
 <style scoped>
 .summary {
-  margin-top: 2rem;
+  padding: 10px;
 }
 
 .dayHeader {
@@ -78,8 +78,8 @@ td {
 
 .editBtn {
   padding: 3px 6px;
-  border: 1px solid black;
-  box-shadow: 1px 1px 2px black;
+  border: 1px solid rgba(100, 100, 100);
+  box-shadow: 1px 1px 2px rgb(100, 100, 100);
   background: transparent;
   color: black;
 }

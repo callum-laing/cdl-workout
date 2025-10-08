@@ -22,7 +22,7 @@ defineProps({ days: Array })
         <div class="dayHeader">
           <span class="dayTitle">{{ day.name }}</span>
           <div class="actions">
-            <button class="exRemoveBtn" @click="$emit('remove-day', index)">❌</button>
+            <button class="exRemoveBtn" @click="$emit('remove-day', index)">Delete Workout</button>
             <button class="addExBtn" @click="$emit('toggle-exercise-inputs', index)">
               {{ day.showExerciseInputs ? 'Cancel' : 'Add Exercise' }}
             </button>
@@ -68,21 +68,17 @@ defineProps({ days: Array })
 
 <style scoped>
 .dayWrapper {
-  margin-top: 1rem;
-  background: rgba(50, 100, 200, 0.4);
-  border: 1px solid rgba(50, 100, 200, 0.2);
-  box-shadow: 2px 2px 2px rgba(50, 100, 200, 0.8);
-  padding: 10px 15px;
+  background: rgba(240, 240, 240);
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 10px;
 }
 
 .dayHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.day {
-  margin-top: 10px;
 }
 
 .dayTitle {
