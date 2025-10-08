@@ -17,9 +17,8 @@
 .dayBtn {
   padding: 7px;
   font-weight: bold;
-  background-color: transparent;
+  background-color: #ffff;
   border: 1px solid black;
-  box-shadow: 1px 1px 1px black;
   color: black;
 }
 

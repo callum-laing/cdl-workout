@@ -87,7 +87,12 @@ const removeExercise = (dayIndex, exerciseIndex) => {
         @save-exercise="saveExercise"
       />
 
-      <DaySummary :days="days" @remove-exercise="removeExercise" />
+      <DaySummary
+        :days="days"
+        @remove-exercise="removeExercise"
+        @save-exercise="saveExercise"
+        @toggle-exercise-inputs="toggleExerciseInputs"
+      />
     </div>
   </div>
 </template>
@@ -98,15 +103,14 @@ const removeExercise = (dayIndex, exerciseIndex) => {
   flex-direction: column;
   align-items: center;
   margin: 3rem auto;
-  max-width: 700px;
+  max-width: 900px;
   width: 100%;
   padding: 0 1rem;
 }
 
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin-top: 2rem;
   gap: 2rem;
