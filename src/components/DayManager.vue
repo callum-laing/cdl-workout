@@ -48,11 +48,12 @@ defineProps({ days: Array })
 
 .dayTitle {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .actions {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
   margin-top: 5px;
 }
@@ -60,8 +61,8 @@ defineProps({ days: Array })
 button {
   padding: 5px 10px;
   background: #fff;
-  border: 1px solid #333;
-  font-weight: bold;
+  border: 1px solid rgb(160, 160, 160);
+  font-weight: 600;
   color: black;
 }
 
@@ -74,7 +75,8 @@ button:hover {
 .exRemoveBtn {
   background: transparent;
   border: 1px solid black;
-  font-size: 1rem;
+  font-size: 0.8em;
+  border-radius: 5px;
 }
 .cancelDayBtn:hover,
 .exRemoveBtn:hover {
@@ -83,5 +85,7 @@ button:hover {
 
 .addExBtn {
   border: 1px solid #333;
+  font-size: 0.8em;
+  border-radius: 5px;
 }
 </style>

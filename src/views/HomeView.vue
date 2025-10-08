@@ -101,19 +101,17 @@ const removeExercise = (dayIndex, exerciseIndex) => {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 3rem auto;
-  max-width: 900px;
-  width: 100%;
+  max-width: 1600px;
   padding: 0 1rem;
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 300px 1fr;
   width: 100%;
   margin-top: 2rem;
-  gap: 2rem;
+  grid-gap: 18rem;
 }
 
 li {

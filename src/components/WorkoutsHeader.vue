@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <button class="dayBtn" @click="$emit('add-day')">Add Workout</button>
+    <button class="dayBtn" @click="$emit('add-day')">Add Day</button>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 <style scoped>
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 2rem;
 }
@@ -18,7 +18,8 @@
   padding: 7px;
   font-weight: bold;
   background-color: #ffff;
-  border: 1px solid black;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
   color: black;
 }
 

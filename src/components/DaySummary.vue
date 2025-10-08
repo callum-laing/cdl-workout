@@ -111,6 +111,13 @@ const toggleEdit = (dayIndex) => {
 </template>
 
 <style scoped>
+.summary {
+  border: 1px solid rgb(180, 180, 180);
+  background: #ffff;
+  border-radius: 5px;
+  padding: 2rem;
+}
+
 .dayHeader {
   display: flex;
   justify-content: space-between;
@@ -122,9 +129,8 @@ table {
   width: 100%;
   margin-top: 5px;
   border: 1px solid rgb(180, 180, 180);
-  border-radius: 5px;
-  background-color: #ffff;
   margin-bottom: 50px;
+  background: rgb(180, 180, 180, 0.2);
 }
 
 th {
@@ -137,6 +143,7 @@ td {
   padding: 10px 20px;
   text-align: center;
   border-bottom: 1px solid rgb(180, 180, 180);
+  letter-spacing: 0.8px;
 }
 
 .tableInput {
@@ -171,6 +178,7 @@ tbody tr:last-of-type td {
   border: 1px solid rgba(100, 100, 100);
   background: #ffff;
   color: black;
+  border-radius: 5px;
 }
 
 .editBtn:hover {
