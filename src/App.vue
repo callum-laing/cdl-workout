@@ -1,19 +1,29 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import WorkoutItem from './components/WorkoutItem.vue'
+
+const workouts = ref([])
+
+const addWorkout = () => {
+  workouts.value.push({ id: crypto.randomUUID(), name: '', exercises: [] })
+}
+</script>
 
 <template>
   <header>
     <h1>CDL Workout</h1>
   </header>
-  <RouterView />
+  <workout-item
+    v-for="(workout, index) in workouts"
+    :workout="workout"
+    @update:workout="($event) => (workouts[index] = $event)"
+  />
+  <button @click="addWorkout">Add Workouts</button>
 </template>
 
 <style scoped>
 .wrapper {
   font-size: 1.2em;
-}
-
-header {
-  padding-bottom: 10px;
 }
 
 h1 {
@@ -23,8 +33,5 @@ h1 {
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
   font-style: normal;
-}
-
-@media (max-width: 722px) {
 }
 </style>
