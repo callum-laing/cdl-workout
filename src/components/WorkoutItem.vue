@@ -24,7 +24,6 @@ const toggleWorkoutEdit = () => {
     <button @click="toggleWorkoutEdit">Edit</button>
   </div>
 
-  <!-- <input v-model="workout.name" placeholder="Name..." type="text" /> -->
   <ExerciseItem
     v-for="(exercise, index) in workout.exercises"
     :key="exercise.id"
