@@ -8,23 +8,9 @@ const model = defineModel('exercises')
   <input v-model="exercises.sets" placeholder="Sets" type="number" />
   <input v-model="exercises.reps" placeholder="Reps" type="number" />
 
-  <div class="container">
-    <table>
-      <tr>
-        Exercise Name:
-        <td>{{ exercises.name }}</td>
-      </tr>
-      <tr>
-        Sets:
-        <td>{{ exercises.sets }}</td>
-      </tr>
-
-      <tr>
-        Reps:
-        <td>{{ exercises.reps }}</td>
-      </tr>
-    </table>
-  </div>
+  <p>{{ exercises.name }}</p>
+  <p>{{ exercises.sets }}</p>
+  <p>{{ exercises.reps }}</p>
 </template>
 
 <style scoped></style>
