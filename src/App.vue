@@ -20,7 +20,7 @@ h1 {
   text-align: center;
   font-size: 3rem;
   letter-spacing: 2px;
-  font-family: 'Oregano', cursive;
+  font-family: 'Oswald', sans-serif;
   font-weight: 400;
   font-style: normal;
 }

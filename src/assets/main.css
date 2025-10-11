@@ -23,7 +23,7 @@ html {
 /* min body height */
 body {
   min-height: 100svh;
-  font-family: Helvetica, sans-serif;
+  font-family: "Quattrocento", serif;
   color: black;
   background-color: rgba(240, 240, 240);
   ;
@@ -45,6 +45,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "Oswald", sans-serif;
   text-wrap: balance;
 }
 

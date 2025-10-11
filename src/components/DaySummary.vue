@@ -113,7 +113,7 @@ const toggleEdit = (dayIndex) => {
 <style scoped>
 .summary {
   border: 1px solid rgb(180, 180, 180);
-  background: #ffff;
+  background: #fff;
   border-radius: 5px;
   padding: 2rem;
 }
@@ -130,7 +130,7 @@ table {
   margin-top: 5px;
   border: 1px solid rgb(180, 180, 180);
   margin-bottom: 50px;
-  background: rgb(180, 180, 180, 0.2);
+  background: rgba(200, 230, 250);
 }
 
 th {
@@ -178,7 +178,7 @@ tbody tr:last-of-type td {
   border: 1px solid rgba(100, 100, 100);
   background: #ffff;
   color: black;
-  border-radius: 5px;
+  background: rgba(200, 230, 250);
 }
 
 .editBtn:hover {
@@ -188,7 +188,9 @@ tbody tr:last-of-type td {
 
 button {
   padding: 2px 5px;
+  background: transparent;
 }
+
 button:hover {
   cursor: pointer;
 }

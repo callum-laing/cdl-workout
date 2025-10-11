@@ -3,7 +3,7 @@ defineProps({ days: Array })
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <div v-for="(day, index) in days" :key="index" class="day">
       <!-- Day Name Input -->
       <input
@@ -35,8 +35,8 @@ defineProps({ days: Array })
 
 <style scoped>
 .dayWrapper {
-  background: #ffff;
-  padding: 10px;
+  background: #fff;
+  padding: 1rem;
   border: 1px solid rgb(180, 180, 180);
   border-radius: 5px;
   margin-bottom: 50px;
@@ -49,6 +49,7 @@ defineProps({ days: Array })
 .dayTitle {
   font-weight: bold;
   font-size: 1.1rem;
+  font-family: 'Oswald', sans-serif;
 }
 
 .actions {
@@ -73,11 +74,12 @@ button:hover {
 
 .cancelDayBtn,
 .exRemoveBtn {
-  background: transparent;
   border: 1px solid black;
   font-size: 0.8em;
   border-radius: 5px;
+  background: rgba(200, 230, 250);
 }
+
 .cancelDayBtn:hover,
 .exRemoveBtn:hover {
   color: red;
@@ -87,5 +89,6 @@ button:hover {
   border: 1px solid #333;
   font-size: 0.8em;
   border-radius: 5px;
+  background: rgba(200, 230, 250);
 }
 </style>
