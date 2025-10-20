@@ -46,8 +46,8 @@ h1 {
 button {
   padding: 5px;
   margin: 2rem;
-  background: #2dabf7;
-  border: 1px solid #2dabf7;
+  background: hsl(203, 93%, 57%);
+  border: 1px solid hsl(203, 93%, 57%);
   transition: 0.1s ease-in;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -56,8 +56,8 @@ button {
 
 button:hover {
   cursor: pointer;
-  background: #033655;
-  border: 1px solid #033655;
+  background: hsl(203, 93%, 17%);
+  border: 1px solid hsl(203, 93%, 17%);
   box-shadow: none;
   color: white;
 }

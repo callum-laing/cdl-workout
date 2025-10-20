@@ -5,7 +5,7 @@ const props = defineProps({
   editable: Boolean
 })
 
-const emit = defineEmits(['remove'])
+const emit = defineEmits(['remove', 'save'])
 </script>
 
 <template>
@@ -23,7 +23,11 @@ const emit = defineEmits(['remove'])
         <tr v-for="(exercise, index) in exercises" :key="exercise.id">
           <td>
             <template v-if="editable">
-              <input v-model="exercise.name" placeholder="Exercise name..." />
+              <input
+                v-model="exercise.name"
+                placeholder="Exercise name..."
+                @keyup.enter="emit('save')"
+              />
             </template>
             <template v-else>
               {{ exercise.name }}
@@ -31,7 +35,12 @@ const emit = defineEmits(['remove'])
           </td>
           <td>
             <template v-if="editable">
-              <input v-model.number="exercise.sets" type="number" placeholder="Sets" />
+              <input
+                v-model.number="exercise.sets"
+                type="number"
+                placeholder="Sets"
+                @keyup.enter="emit('save')"
+              />
             </template>
             <template v-else>
               {{ exercise.sets }}
@@ -39,7 +48,12 @@ const emit = defineEmits(['remove'])
           </td>
           <td>
             <template v-if="editable">
-              <input v-model.number="exercise.reps" type="number" placeholder="Reps" />
+              <input
+                v-model.number="exercise.reps"
+                type="number"
+                placeholder="Reps"
+                @keyup.enter="emit('save')"
+              />
             </template>
             <template v-else>
               {{ exercise.reps }}
@@ -63,8 +77,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  border: 1px solid #033655;
-  background-color: #8fd3fb;
+  border: 1px solid hsl(203, 93%, 17%);
+  background-color: hsl(202, 93%, 77%);
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -81,8 +95,8 @@ th {
 }
 
 td {
-  border-top: 1px solid #033655;
-  border-bottom: 1px solid #033655;
+  border-top: 1px solid hsl(203, 93%, 17%);
+  border-bottom: 1px solid hsl(203, 93%, 17%);
 }
 
 input {
@@ -91,9 +105,9 @@ input {
 }
 
 .remove-btn {
-  background: #e74c3c;
-  color: white;
+  background: hsl(6, 78%, 57%);
   border: none;
+  font-weight: bold;
   padding: 4px 8px;
   cursor: pointer;
   box-shadow:
@@ -102,7 +116,7 @@ input {
 }
 
 .remove-btn:hover {
-  background: #c0392b;
+  background: hsl(6, 63%, 46%);
   box-shadow: none;
 }
 </style>

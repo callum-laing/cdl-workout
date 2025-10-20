@@ -24,7 +24,7 @@ body {
   min-height: 100svh;
   font-family: "Quattrocento", serif;
   color: black;
-  background-color: #eff0f1
+  background-color: hsl(210, 7%, 94%);
 }
 
 /* responsive images/videos */
@@ -56,5 +56,9 @@ li {
 }
 
 input {
-  background-color: #eff0f1;
+  background-color: hsl(210, 7%, 94%);
+}
+
+button {
+  font-weight: bold;
 }

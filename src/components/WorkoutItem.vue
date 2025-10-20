@@ -6,7 +6,14 @@ const emit = defineEmits(['remove'])
 const model = defineModel('workout')
 
 const editWorkout = ref(true)
+
 const toggleWorkoutEdit = () => {
+  if (editWorkout.value) {
+    if (!model.value.name.trim()) {
+      alert('Workout name is required.')
+      return
+    }
+  }
   editWorkout.value = !editWorkout.value
 }
 
@@ -30,7 +37,13 @@ const removeExercise = (index) => {
   <div class="workout-container">
     <div class="workout-header">
       <template v-if="editWorkout">
-        <input v-model="workout.name" placeholder="Workout name..." type="text" />
+        <input
+          v-model="workout.name"
+          placeholder="Workout name..."
+          type="text"
+          @keyup.enter="toggleWorkoutEdit"
+          required
+        />
       </template>
       <template v-else>
         <h2>{{ workout.name || 'Unnamed Workout' }}</h2>
@@ -49,6 +62,7 @@ const removeExercise = (index) => {
       v-model:exercises="workout.exercises"
       :editable="editWorkout"
       @remove="removeExercise"
+      @save="toggleWorkoutEdit"
     />
   </div>
 </template>
@@ -59,11 +73,11 @@ const removeExercise = (index) => {
   flex-direction: column;
   margin: 2rem auto;
   gap: 1rem;
-  border: 1px solid rgb(180, 180, 180);
+  border: 1px solid hsl(0, 0%, 71%);
   padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px hsla(0, 0%, 0%, 0.05);
   max-width: 1200px;
-  background-color: rgb(250, 250, 250);
+  background-color: hsl(0, 0%, 98%);
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -92,14 +106,14 @@ button {
   padding: 6px 12px;
   cursor: pointer;
   transition: 0.2s;
-  background: rgba(79, 209, 209);
+  background: hsl(180, 59%, 67%);
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 button:hover {
-  background: rgba(59, 189, 189);
+  background: hsl(180, 59%, 36%);
   box-shadow: none;
 }
 
@@ -109,18 +123,18 @@ input {
 }
 
 .ex-btn {
-  background: rgb(91, 201, 115);
+  background: hsl(133, 50%, 67%);
 }
 
 .ex-btn:hover {
-  background: rgb(71, 181, 95);
+  background: hsl(133, 50%, 37%);
 }
 
 .delete-btn {
-  background: #e74c3c;
+  background: hsl(6, 78%, 67%);
 }
 
 .delete-btn:hover {
-  background: #c0392b;
+  background: hsl(6, 78%, 37%);
 }
 </style>
