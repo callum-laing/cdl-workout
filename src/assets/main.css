@@ -16,7 +16,6 @@
 /* dark mode user-agent-styles */
 /* improves punctuation in supported browsers */
 html {
-  color-scheme: dark light;
   hanging-punctuation: first last;
 }
 
@@ -25,8 +24,7 @@ body {
   min-height: 100svh;
   font-family: "Quattrocento", serif;
   color: black;
-  background-color: rgba(240, 240, 240);
-  ;
+  background-color: #eff0f1
 }
 
 /* responsive images/videos */
@@ -55,4 +53,8 @@ p,
 li {
   max-width: var(--p-max-width, 65ch);
   text-wrap: pretty;
+}
+
+input {
+  background-color: #eff0f1;
 }

@@ -56,19 +56,33 @@ const emit = defineEmits(['remove'])
 
 <style scoped>
 .exercises-container {
-  overflow-x: auto;
+  padding: 1rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  border: 1px solid #033655;
+  background-color: #8fd3fb;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 th,
 td {
-  border-bottom: 1px solid #ccc;
   padding: 8px;
+  text-align: center;
+}
+
+th {
+  font-weight: 600;
+}
+
+td {
+  border-top: 1px solid #033655;
+  border-bottom: 1px solid #033655;
 }
 
 input {
@@ -81,11 +95,14 @@ input {
   color: white;
   border: none;
   padding: 4px 8px;
-  border-radius: 4px;
   cursor: pointer;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .remove-btn:hover {
   background: #c0392b;
+  box-shadow: none;
 }
 </style>

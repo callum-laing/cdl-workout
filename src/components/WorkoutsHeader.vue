@@ -19,7 +19,6 @@
   font-weight: bold;
   background-color: #ffff;
   border: 1px solid rgb(160, 160, 160);
-  border-radius: 5px;
   color: black;
 }
 

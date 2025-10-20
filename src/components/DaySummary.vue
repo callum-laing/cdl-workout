@@ -114,7 +114,6 @@ const toggleEdit = (dayIndex) => {
 .summary {
   border: 1px solid rgb(180, 180, 180);
   background: #fff;
-  border-radius: 5px;
   padding: 2rem;
 }
 
