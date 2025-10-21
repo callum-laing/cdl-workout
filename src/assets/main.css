@@ -13,7 +13,6 @@
   font: inherit;
 }
 
-/* dark mode user-agent-styles */
 /* improves punctuation in supported browsers */
 html {
   hanging-punctuation: first last;
