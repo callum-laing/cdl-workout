@@ -137,4 +137,60 @@ input {
 .delete-btn:hover {
   background: hsl(6, 78%, 37%);
 }
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .workout-container {
+    margin: 1rem;
+    padding: 0.75rem;
+  }
+
+  .workout-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .button-group {
+    justify-content: center;
+  }
+
+  .workout-header > h2 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .workout-container {
+    margin: 1rem 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .workout-header {
+    padding: 0.5rem;
+  }
+
+  .workout-header > h2 {
+    font-size: 1.25rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
 </style>

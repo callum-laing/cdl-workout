@@ -119,4 +119,41 @@ input {
   background: hsl(6, 63%, 46%);
   box-shadow: none;
 }
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .exercises-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  table {
+    font-size: 0.95rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .exercises-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+
+  input {
+    font-size: 0.9rem;
+  }
+
+  .remove-btn {
+    padding: 3px 6px;
+  }
+}
 </style>
