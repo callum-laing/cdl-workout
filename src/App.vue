@@ -1,8 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 import WorkoutItem from './components/WorkoutItem.vue'
+import { watch } from 'vue'
 
 const workouts = ref([])
+
+const saved = localStorage.getItem('workouts')
+if (saved) {
+  workouts.value = JSON.parse(saved)
+}
 
 const addWorkout = () => {
   workouts.value.push({ id: crypto.randomUUID(), name: '', exercises: [] })
@@ -11,6 +17,14 @@ const addWorkout = () => {
 const removeWorkout = (id) => {
   workouts.value = workouts.value.filter((w) => w.id !== id)
 }
+
+watch(
+  workouts,
+  (newVal) => {
+    localStorage.setItem('workouts', JSON.stringify(newVal))
+  },
+  { deep: true }
+)
 </script>
 
 <template>
