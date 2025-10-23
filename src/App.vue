@@ -91,7 +91,7 @@ main {
 
 .add-workout-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 1rem 20.5rem;
 }
 

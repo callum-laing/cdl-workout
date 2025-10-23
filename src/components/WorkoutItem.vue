@@ -76,7 +76,7 @@ const removeExercise = (index) => {
   border: 1px solid hsl(0, 0%, 71%);
   padding: 1rem;
   box-shadow: 0 2px 6px hsla(0, 0%, 0%, 0.05);
-  max-width: 1200px;
+  max-width: 800px;
   background-color: hsl(0, 0%, 98%);
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,

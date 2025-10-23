@@ -87,7 +87,6 @@ table {
 th,
 td {
   padding: 8px;
-  text-align: center;
 }
 
 th {
@@ -97,6 +96,7 @@ th {
 td {
   border-top: 1px solid hsl(203, 93%, 17%);
   border-bottom: 1px solid hsl(203, 93%, 17%);
+  border-right: 1px solid hsl(203, 93%, 17%);
 }
 
 input {
