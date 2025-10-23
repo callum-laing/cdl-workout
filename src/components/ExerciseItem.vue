@@ -78,7 +78,7 @@ table {
   border-collapse: collapse;
   text-align: left;
   border: 1px solid hsl(203, 93%, 17%);
-  background-color: hsl(202, 93%, 77%);
+  background-color: hsl(210, 10%, 90%);
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;

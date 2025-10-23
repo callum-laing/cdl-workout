@@ -1,7 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import WorkoutItem from './components/WorkoutItem.vue'
-import { watch } from 'vue'
 
 const workouts = ref([])
 
@@ -13,69 +12,125 @@ if (saved) {
 const addWorkout = () => {
   workouts.value.push({ id: crypto.randomUUID(), name: '', exercises: [] })
 }
-
 const removeWorkout = (id) => {
   workouts.value = workouts.value.filter((w) => w.id !== id)
 }
 
-watch(
-  workouts,
-  (newVal) => {
-    localStorage.setItem('workouts', JSON.stringify(newVal))
-  },
-  { deep: true }
-)
+watch(workouts, (newVal) => localStorage.setItem('workouts', JSON.stringify(newVal)), {
+  deep: true
+})
 </script>
 
 <template>
-  <header>
-    <h1>CDL Workout</h1>
-  </header>
+  <div class="layout">
+    <header>
+      <h1>CDL WORKOUT</h1>
+    </header>
 
-  <!-- Main View (if no workout exists) -->
-  <div v-if="workouts.length === 0" class="empty-state">
-    <p>You have no workouts yet.</p>
-    <p>Click <span class="workout-text">Add Workout</span> to create your first one.</p>
+    <main>
+      <div v-if="workouts.length === 0" class="empty-state">
+        <p>You have no workouts yet.</p>
+        <p>Click <span class="workout-text">Add Workout</span> to create your first one.</p>
 
-    <div class="add-workout-center">
-      <button @click="addWorkout">Add Workout</button>
-    </div>
+        <div class="add-workout-center">
+          <button @click="addWorkout">Add Workout</button>
+        </div>
+      </div>
+
+      <template v-else>
+        <div class="add-workout-container">
+          <button @click="addWorkout">Add Workout</button>
+        </div>
+
+        <workout-item
+          v-for="(workout, index) in workouts"
+          :key="workout.id"
+          :workout="workout"
+          @update:workout="($event) => (workouts[index] = $event)"
+          @remove="removeWorkout"
+        />
+      </template>
+    </main>
+
+    <footer>
+      <p>© {{ new Date().getFullYear() }} Callum Laing</p>
+    </footer>
   </div>
-
-  <!-- Main View (if a workout exists) -->
-  <template v-else>
-    <div class="add-workout-container">
-      <button @click="addWorkout">Add Workout</button>
-    </div>
-
-    <workout-item
-      v-for="(workout, index) in workouts"
-      :workout="workout"
-      @update:workout="($event) => (workouts[index] = $event)"
-      @remove="removeWorkout"
-    />
-  </template>
 </template>
 
 <style scoped>
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 1rem;
+  color: hsl(210, 7%, 94%);
+  background: hsl(210 20% 46%);
+  border-bottom: 2px solid hsl(210 20% 35%);
+  box-shadow:
+    0 4px 8px hsla(210, 30%, 10%, 0.4),
+    0 2px 4px hsla(210, 20%, 20%, 0.3);
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+main {
+  padding: 2rem 0;
+  overflow: visible;
+}
+
+.add-workout-container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 20.5rem;
+}
+
+button {
+  padding: 6px 12px;
+  background: hsl(203, 93%, 57%);
+  border: 1px solid hsl(203, 93%, 57%);
+  color: white;
+  font-weight: 500;
+  transition: 0.2s ease-in;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+button:hover {
+  background: hsl(203, 93%, 37%);
+  border-color: hsl(203, 93%, 37%);
+  box-shadow: none;
+  cursor: pointer;
+}
+
 .empty-state {
   text-align: center;
-  margin-top: 3rem;
+  margin: 3rem auto 0;
   padding: 2rem;
   border: 2px solid hsl(210 20% 80%);
   background: hsl(210 20% 97%);
   color: hsl(210 10% 30%);
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 2;
+  line-height: 1.8;
+  border-radius: 10px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .workout-text {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.1rem;
 }
 
@@ -85,46 +140,24 @@ watch(
   margin-top: 1.5rem;
 }
 
-.wrapper {
-  font-size: 1.2em;
-}
-
-h1 {
+footer {
   text-align: center;
-  font-size: 3rem;
-  letter-spacing: 2px;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-button {
-  padding: 5px;
-  margin: 2rem;
-  background: hsl(203, 93%, 57%);
-  border: 1px solid hsl(203, 93%, 57%);
-  transition: 0.1s ease-in;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: hsl(210, 7%, 94%);
+  background: hsl(210 20% 46%);
+  border-top: 2px solid hsl(210 20% 35%);
   box-shadow:
-    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    0 -4px 8px hsla(210, 30%, 10%, 0.4),
+    0 -2px 4px hsla(210, 20%, 20%, 0.3);
 }
 
-button:hover {
-  cursor: pointer;
-  background: hsl(203, 93%, 17%);
-  border: 1px solid hsl(203, 93%, 17%);
-  box-shadow: none;
-  color: white;
-}
-
-.add-workout-container {
-  display: flex;
-  justify-content: flex-start;
-  margin: 1rem 20.5rem;
-}
-
-/* Tablets */
+/* === RESPONSIVE === */
 @media (max-width: 1024px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
   .add-workout-container {
     justify-content: center;
     margin: 1rem 0;
@@ -134,20 +167,14 @@ button:hover {
     margin: 2rem 1rem;
     padding: 1.5rem;
   }
-
-  h1 {
-    font-size: 2.5rem;
-  }
 }
 
-/* Phones */
 @media (max-width: 600px) {
   h1 {
     font-size: 2rem;
   }
 
   button {
-    margin: 1rem auto;
     padding: 8px 16px;
     font-size: 0.9rem;
   }
