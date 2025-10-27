@@ -50,9 +50,26 @@ const removeExercise = (index) => {
       </template>
 
       <div class="button-group">
-        <button @click="toggleWorkoutEdit">
-          {{ editWorkout ? 'Done' : 'Edit Workout' }}
+        <button @click="toggleWorkoutEdit" class="icon-btn">
+          <template v-if="editWorkout">Done</template>
+          <template v-else>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="currentColor"
+            >
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 
+             17.25zM20.71 7.04a1.003 1.003 0 0 0 
+             0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 
+             0l-1.83 1.83 3.75 3.75 1.84-1.82z"
+              />
+            </svg>
+          </template>
         </button>
+
         <button v-if="editWorkout" @click="addExercise" class="ex-btn">Add Exercise</button>
         <button v-if="editWorkout" @click="removeWorkout" class="delete-btn">Delete Workout</button>
       </div>
@@ -69,14 +86,14 @@ const removeExercise = (index) => {
 
 <style scoped>
 .workout-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   margin: 2rem auto;
   gap: 1rem;
   border: 1px solid hsl(0, 0%, 71%);
   padding: 1rem;
   box-shadow: 0 2px 6px hsla(0, 0%, 0%, 0.05);
-  max-width: 800px;
+  width: 100%;
+  max-width: 500px;
   background-color: hsl(0, 0%, 98%);
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -101,7 +118,29 @@ const removeExercise = (index) => {
   gap: 0.5rem;
 }
 
-button {
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  color: hsl(203, 93%, 37%);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  color: hsl(203, 93%, 57%);
+}
+
+.icon-btn svg {
+  pointer-events: none;
+  width: 26px;
+  height: 100%;
+}
+
+button:not(.icon-btn) {
   border: none;
   padding: 6px 12px;
   cursor: pointer;
@@ -112,7 +151,7 @@ button {
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-button:hover {
+button:not(.icon-btn):hover {
   background: hsl(180, 59%, 36%);
   box-shadow: none;
 }

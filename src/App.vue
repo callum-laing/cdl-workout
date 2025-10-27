@@ -42,13 +42,15 @@ watch(workouts, (newVal) => localStorage.setItem('workouts', JSON.stringify(newV
           <button @click="addWorkout">Add Workout</button>
         </div>
 
-        <workout-item
-          v-for="(workout, index) in workouts"
-          :key="workout.id"
-          :workout="workout"
-          @update:workout="($event) => (workouts[index] = $event)"
-          @remove="removeWorkout"
-        />
+        <div class="workout-grid">
+          <workout-item
+            v-for="(workout, index) in workouts"
+            :key="workout.id"
+            :workout="workout"
+            @update:workout="($event) => (workouts[index] = $event)"
+            @remove="removeWorkout"
+          />
+        </div>
       </template>
     </main>
 
@@ -63,6 +65,13 @@ watch(workouts, (newVal) => localStorage.setItem('workouts', JSON.stringify(newV
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+}
+
+.workout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 500px));
+  gap: 2rem;
+  justify-content: center;
 }
 
 header {
@@ -92,7 +101,6 @@ main {
 .add-workout-container {
   display: flex;
   justify-content: center;
-  margin: 1rem 20.5rem;
 }
 
 button {
@@ -136,7 +144,7 @@ button:hover {
 
 .add-workout-center {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 1.5rem;
 }
 
